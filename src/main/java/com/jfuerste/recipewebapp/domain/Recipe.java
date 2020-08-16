@@ -3,6 +3,7 @@ package com.jfuerste.recipewebapp.domain;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -21,6 +22,8 @@ public class Recipe {
     private String url;
     private String directions;
     //ToDo: Add Difficulty
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     @Lob
     private Byte[] image;
