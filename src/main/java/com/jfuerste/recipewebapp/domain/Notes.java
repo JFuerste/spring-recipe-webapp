@@ -5,6 +5,14 @@ import javax.persistence.*;
 @Entity
 public class Notes {
 
+    public Notes(Recipe recipe, String recipeNotes) {
+        this.recipe = recipe;
+        this.recipeNotes = recipeNotes;
+    }
+
+    public Notes() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
