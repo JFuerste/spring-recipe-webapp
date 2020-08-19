@@ -17,8 +17,8 @@ class CategoryRepositoryIT {
 
     @Test
     public void findCategoryGerman(){
-        Optional<Category> german = categoryRepository.findByDescription("German");
-        assertEquals("German", german.get().getDescription());
+        Optional<Category> german = categoryRepository.findByDescription("Deutsch");
+        assertEquals("Deutsch", german.get().getDescription());
     }
 
 }

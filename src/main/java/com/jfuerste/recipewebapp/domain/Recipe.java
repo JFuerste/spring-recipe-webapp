@@ -1,5 +1,7 @@
 package com.jfuerste.recipewebapp.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,6 +11,8 @@ import java.util.Set;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
 public class Recipe {
 
 

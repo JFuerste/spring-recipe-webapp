@@ -33,8 +33,8 @@ public class RecipeLoader implements ApplicationListener<ContextRefreshedEvent> 
     public List<Recipe> getRecipes() {
 
         Optional<UnitOfMeasure> gOpptional = unitOfMeasureRepository.findByDescription("g");
-        Optional<UnitOfMeasure> teaspoonOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
-        Optional<UnitOfMeasure> tablespoonOptional = unitOfMeasureRepository.findByDescription("Tablespoon");
+        Optional<UnitOfMeasure> teaspoonOptional = unitOfMeasureRepository.findByDescription("Teelöffel");
+        Optional<UnitOfMeasure> tablespoonOptional = unitOfMeasureRepository.findByDescription("Esslöffel");
 
         if (gOpptional.isEmpty()|| teaspoonOptional.isEmpty() || tablespoonOptional.isEmpty()){
             throw new RuntimeException("One of the Units not found");
@@ -44,46 +44,39 @@ public class RecipeLoader implements ApplicationListener<ContextRefreshedEvent> 
         UnitOfMeasure teaspoon = teaspoonOptional.get();
         UnitOfMeasure tablespoon = tablespoonOptional.get();
 
-        Optional<Category> turkishOptional = categoryRepository.findByDescription("Turkish");
+        Optional<Category> turkishOptional = categoryRepository.findByDescription("Türkisch");
         if (turkishOptional.isEmpty()) {
             throw new RuntimeException("Category not found");
         }
+        Optional<Category> germanOptional = categoryRepository.findByDescription("Deutsch");
 
         Category turkish = turkishOptional.get();
+        Category german = germanOptional.get();
 
         Recipe pilav = new Recipe();
         pilav.addCategory(turkish);
+        pilav.addCategory(german);
         pilav.setPrepTime(30);
         pilav.setCookTime(30);
-        pilav.setDifficulty(Difficulty.EASY);
-        pilav.setDirections("Heat your butter in a deep saucepan over a low heat. Now add your şehriye (orzo) to the pan and stir around for a few minutes until you see it start to change colour. \n" +
-                "As soon as you notice the orzo start to go brown, add your cup of rice and continue to stir. Remember to keep the pan over a low heat and keep stirring, otherwise your rice and orzo will burn. \n" +
-                "After 3-4 minutes, add the water or stock. \n" +
-                "There will be a big sizzle and the liquid will bubble up. Turn up the heat and bring the rice to the boil, fully. \n" +
-                "Once the rice is boiling, give it a couple of stirs around, put a lid on the pan, leaving a small gap, and reduce the heat to medium-low. \n" +
-                "Leave your rice to simmer for 8-10 minutes until the water or stock has absorbed. \n" +
-                "Now remove from the heat, put the lid firmly on the pan and leave your Turkish rice to stand for 5 minutes. \n" +
-                "After 5 minutes, remove the lid and fork through your rice.");
+        pilav.setDifficulty(Difficulty.EINFACH);
+        pilav.setDirections("In einem großen Topf Butter erhitzen und Nudeln gut braun rösten. Den Reis dazu geben und glasig dünsten." +
+                " Mit 500-550 ml Wasser aufgießen und zum Kochen bringen. Salzen und bei geringer Hitze etwa 10-15 Minuten köcheln lassen bis die Flüssigkeit aufgesogen ist.\n" +
+                "Zwischen Topf und Deckel drei Lagen Papier-Küchentücher klemmen und Topfdeckel gut eindrücken." +
+                " Herd ausschalten und Reis auf der warmen Herdplatte stehen lassen und mindestens 10 Minuten bis zu zwei Stunden ruhen lassen.\n" +
+                "Reis vor dem Servieren auflockern und warm servieren");
         Notes pilavNotes = new Notes();
-        pilavNotes.setRecipeNotes("Heat your butter in a deep saucepan over a low heat. Now add your şehriye (orzo) to the pan and stir around for a few minutes until you see it start to change colour. " +
-                "As soon as you notice the orzo start to go brown, add your cup of rice and continue to stir. Remember to keep the pan over a low heat and keep stirring, otherwise your rice and orzo will burn. " +
-                "After 3-4 minutes, add the water or stock. " +
-                "There will be a big sizzle and the liquid will bubble up. Turn up the heat and bring the rice to the boil, fully. " +
-                "Once the rice is boiling, give it a couple of stirs around, put a lid on the pan, leaving a small gap, and reduce the heat to medium-low. " +
-                "Leave your rice to simmer for 8-10 minutes until the water or stock has absorbed. " +
-                "Now remove from the heat, put the lid firmly on the pan and leave your Turkish rice to stand for 5 minutes. " +
-                "After 5 minutes, remove the lid and fork through your rice.");
+        pilavNotes.setRecipeNotes("Für Nudeln Şehriye oder auch Orzo Nudeln verwenden.");
         pilav.setNotes(pilavNotes);
 
-        pilav.addIngredient(new Ingredient("Rice", new BigDecimal(250), g))
+        pilav.addIngredient(new Ingredient("Reis", new BigDecimal(250), g))
                 .addIngredient(new Ingredient("Butter", new BigDecimal(25), g))
-                .addIngredient(new Ingredient("Noodles", new BigDecimal(2), tablespoon))
-                .addIngredient(new Ingredient("Salt", new BigDecimal(1), teaspoon));
+                .addIngredient(new Ingredient("Nudeln", new BigDecimal(2), tablespoon))
+                .addIngredient(new Ingredient("Salz", new BigDecimal(1), teaspoon));
 
-        pilav.setDescription("Turkish Pilav Rice");
+        pilav.setDescription("Türkischer Reis");
         pilav.setServings(4);
-        pilav.setSource("Turkish Blog");
-        pilav.setUrl("http://www.turkeysforlife.com/2010/12/turkish-food-turkish-rice-recipe.html");
+        pilav.setSource("Blog");
+        pilav.setUrl("de.semilicious.com/2016/02/08/geschichte-tuerkischerreis-1/");
 
         //recipeRepository.save(pilav);
         List<Recipe> recipes = new ArrayList<>();

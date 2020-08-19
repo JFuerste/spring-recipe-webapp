@@ -29,4 +29,8 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
+    @Override
+    public String toString() {
+        return amount.stripTrailingZeros().toPlainString() + " " + uom + " " + description;
+    }
 }
