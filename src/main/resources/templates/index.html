@@ -21,28 +21,28 @@
                         <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
                             <table class="table table-hover">
                                 <thead class="thead-inverse">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Beschreibung</th>
-                                    <th>Link</th>
+                                <tr class="d-flex">
+                                    <th class="text-center">ID</th>
+                                    <th class="col-10 text-center">Beschreibung</th>
+                                    <th class="text-center"></th>
                                 </tr>
                                 </thead>
-                                <tr th:remove="all">
-                                    <td>123</td>
-                                    <td>Mjam</td>
-                                    <td><a href="#">Link</a> </td>
+                                <tr th:remove="all" class="d-flex">
+                                    <td class="text-center">123</td>
+                                    <td class="col-10 text-center">Mjam</td>
+                                    <td class="text-center"><a href="#">Link</a> </td>
                                 </tr>
-                                <tr th:remove="all">
-                                    <td>123</td>
-                                    <td>Mjam2</td>
-                                    <td><a href="#">Link</a> </td>
+                                <tr th:remove="all" class="d-flex">
+                                    <td class="text-center">123</td>
+                                    <td class="col-10 text-center">Mjam2</td>
+                                    <td class="text-center"><a href="#">Link</a> </td>
 
                                 </tr>
                                 <!--@thymesVar id="recipes" type="Set<Recipe>"-->
-                                <tr th:each="recipe : ${recipes}">
-                                    <td th:text="${recipe.id}">123</td>
-                                    <td th:text="${recipe.description}">Mjam3</td>
-                                    <td><a href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">Link</a> </td>
+                                <tr th:each="recipe : ${recipes}" style="transform: rotate(0);" class="d-flex">
+                                    <td class="text-center" th:text="${recipe.id}">123</td>
+                                    <td class="col-10 text-center" th:text="${recipe.description}">Mjam3</td>
+                                    <td scope="row"><a href="#" class="stretched-link text-center" th:href="@{'/recipe/show/' + ${recipe.id}}"></a> </td>
                                 </tr>
                             </table>
                         </div>
