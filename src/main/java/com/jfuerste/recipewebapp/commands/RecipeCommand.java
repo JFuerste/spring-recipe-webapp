@@ -1,14 +1,15 @@
 package com.jfuerste.recipewebapp.commands;
 
 import com.jfuerste.recipewebapp.domain.Difficulty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
 @NoArgsConstructor
 public class RecipeCommand {
     private Long id;
@@ -18,8 +19,18 @@ public class RecipeCommand {
     private String source;
     private String url;
     private String directions;
-    private Set<IngredientCommand> ingredients;
-    private Set<CategoryCommand> categories;
-    private NoteCommand notes;
+    private Integer servings;
+    private Set<IngredientCommand> ingredients = new HashSet<>();
+    private Set<CategoryCommand> categories = new HashSet<>();
+    private NotesCommand notes;
     private Difficulty difficulty;
+
+    public void addCategory(CategoryCommand category){
+        categories.add(category);
+    }
+
+    public void addIngredient(IngredientCommand ingredient){
+        ingredient.setRecipe(this);
+        ingredients.add(ingredient);
+    }
 }

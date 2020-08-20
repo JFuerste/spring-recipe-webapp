@@ -1,13 +1,13 @@
 package com.jfuerste.recipewebapp.commands;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
 @NoArgsConstructor
 public class IngredientCommand {
     private Long id;

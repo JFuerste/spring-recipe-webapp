@@ -1,5 +1,7 @@
 package com.jfuerste.recipewebapp.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +9,8 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
 public class Ingredient {
 
     @Id
