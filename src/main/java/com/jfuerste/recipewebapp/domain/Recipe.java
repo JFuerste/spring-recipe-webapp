@@ -32,6 +32,7 @@ public class Recipe {
 
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    @Builder.Default
     private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob
@@ -43,6 +44,7 @@ public class Recipe {
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
+    @Builder.Default
     @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(name = "recipe_category",
@@ -50,6 +52,8 @@ public class Recipe {
     private Set<Category> categories = new HashSet<>();
 
     public Recipe() {
+        categories = new HashSet<>();
+        ingredients = new HashSet<>();
     }
 
     public Recipe addIngredient(Ingredient ingredient){

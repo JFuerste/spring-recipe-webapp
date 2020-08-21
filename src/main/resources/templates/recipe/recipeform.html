@@ -86,7 +86,7 @@
                                     <h1 class="card-title">Zutaten</h1>
                                 </div>
                                 <div class="col-md-1 float-left">
-                                    <a class="btn btn-light " href="#" role="button">Anpassen</a>
+                                    <a class="btn btn-light " href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">Anpassen</a>
                                 </div>
                             </div>
                         </div>
