@@ -42,7 +42,7 @@
                                 <tr th:each="recipe : ${recipes}" style="transform: rotate(0);" class="d-flex">
                                     <td class="text-center" th:text="${recipe.id}">123</td>
                                     <td class="col-10 text-center" th:text="${recipe.description}">Mjam3</td>
-                                    <td scope="row"><a href="#" class="stretched-link text-center" th:href="@{'/recipe/show/' + ${recipe.id}}"></a> </td>
+                                    <td scope="row"><a href="#" class="stretched-link text-center" th:href="@{'/recipe/' + ${recipe.id} + '/show/' }"></a> </td>
                                 </tr>
                             </table>
                         </div>
