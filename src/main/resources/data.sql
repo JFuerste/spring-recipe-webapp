@@ -9,3 +9,5 @@ insert into unit_of_measure (description) values ('Cup')
 insert into unit_of_measure (description) values ('Ounce')
 insert into unit_of_measure (description) values ('g')
 insert into unit_of_measure (description) values ('ml')
+insert into unit_of_measure (description) values ('Stück')
+

@@ -16,8 +16,11 @@
             <div class="card border-dark mb-3">
                 <div class="card-header bg-dark text-white">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-10">
                             <h3 class="card-title">Zutaten</h3>
+                        </div>
+                        <div class="col-md-2 float-left">
+                            <a class="btn btn-light " href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/new'}" role="button">Hinzufügen</a>
                         </div>
                     </div>
                 </div>
