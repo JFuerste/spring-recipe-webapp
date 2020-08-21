@@ -15,4 +15,9 @@ public class IngredientCommand {
     private BigDecimal amount;
     private UnitOfMeasureCommand uom;
     private RecipeCommand recipe;
+
+    @Override
+    public String toString() {
+        return amount.stripTrailingZeros().toPlainString() + " " + uom + " " + description;
+    }
 }

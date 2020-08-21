@@ -14,7 +14,14 @@
             <div class="col-lg-6 col-lg-offset-3">
                 <div class="card border-dark mb-3">
                     <div class="card-header bg-dark text-white">
-                        <h3 class="card-title">Rezepte</h3>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h3 class="card-title">Rezepte</h3>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-light btn-sm" href="#" th:href="@{'/recipe/new'}" role="button"> Neues Rezept</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <!--@thymesVar id="recipes" type="Set<Recipe>"-->
@@ -26,6 +33,8 @@
                                     <th class="text-center">Beschreibung</th>
                                     <th class="text-center">Ansehen</th>
                                     <th class="text-center">Editieren</th>
+                                    <th class="text-center">Löschen</th>
+
                                 </tr>
                                 </thead>
                                 <tr th:remove="all" >
@@ -33,6 +42,8 @@
                                     <td class="text-center">Mjam</td>
                                     <td class="text-center"><a href="#">Link</a> </td>
                                     <td class="text-center"><a href="#">Editieren</a> </td>
+                                    <td class="text-center"><a href="#">Löschen</a> </td>
+
 
                                 </tr>
                                 <tr th:remove="all" >
@@ -40,6 +51,8 @@
                                     <td class="text-center">Mjam2</td>
                                     <td class="text-center"><a href="#">Link</a> </td>
                                     <td class="text-center"><a href="#">Editieren</a> </td>
+                                    <td class="text-center"><a href="#">Löschen</a> </td>
+
 
                                 </tr>
                                 <!--@thymesVar id="recipes" type="Set<Recipe>"-->
@@ -48,6 +61,8 @@
                                     <td class="text-center" th:text="${recipe.description}">Mjam3</td>
                                     <td class="text-center"><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show'}">Link</a></td>
                                     <td class="text-center"><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/update'}">Editieren</a></td>
+                                    <td class="text-center"><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}">Löschen</a></td>
+
                                 </tr>
                             </table>
                         </div>

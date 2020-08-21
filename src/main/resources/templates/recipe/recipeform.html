@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Recipe Form</title>
+    <title>Rezept anpassen</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Name:</label>
-                                    <input type="text" class="form-control" th:field="*{description}"/>
+                                    <input required type="text" class="form-control" th:field="*{description}"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -48,11 +48,11 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Vorbereitungszeit:</label>
-                                    <input type="text" class="form-control" th:field="*{prepTime}"/>
+                                    <input required type="number" class="form-control" th:field="*{prepTime}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Kochzeit:</label>
-                                    <input type="text" class="form-control" th:field="*{cookTime}"/>
+                                    <input required type="number" class="form-control" th:field="*{cookTime}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Schwierigkeit:</label>
@@ -66,7 +66,7 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Portionen:</label>
-                                    <input type="text" class="form-control" th:field="*{servings}"/>
+                                    <input type="number" class="form-control" th:field="*{servings}"/>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Quelle:</label>
@@ -97,9 +97,7 @@
                                         <li th:remove="all">1kg Reis</li>
                                         <li th:remove="all">5l Wasser</li>
                                         <li th:each="ingredient : ${recipe.ingredients}"
-                                            th:text="${(ingredient.getAmount() +
-                                        ' ' + ingredient.uom.getDescription() +
-                                        ' - ' + ingredient.getDescription())}">1 Löffel Salz
+                                            th:text="${(ingredient)}">1 Löffel Salz
                                         </li>
                                     </ul>
                                 </div>
