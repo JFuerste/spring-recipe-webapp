@@ -1,5 +1,6 @@
 package com.jfuerste.recipewebapp.services;
 
+import com.jfuerste.recipewebapp.converters.*;
 import com.jfuerste.recipewebapp.domain.Recipe;
 import com.jfuerste.recipewebapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +27,13 @@ class RecipeServiceImplTest {
     void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository,
+                new RecipeToRecipeCommand(new NotesToNotesCommand(),
+                        new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand()),
+                        new CategoryToCategoryCommand()),
+                new RecipeCommandToRecipe(new NotesCommandToNotes(),
+                        new CategoryCommandToCategory(),
+                        new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure())));
     }
 
     @Test
@@ -55,7 +62,5 @@ class RecipeServiceImplTest {
         assertNotNull(recipeReturned);
         verify(recipeRepository).findById(anyLong());
         verify(recipeRepository, never()).findAll();
-
-
     }
 }
