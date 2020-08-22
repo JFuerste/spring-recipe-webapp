@@ -15,19 +15,32 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="card border-dark mb-3">
                 <div class="card card-primary">
-                    <div class="card-header bg-dark text-white">
-                        <h1 class="card-title" th:text="${recipe.description}">Recipe Description Here!</h1>
-                    </div>
+                        <div class="card-header bg-dark text-white">
+                            <div class="row">
+                                <div class="col-md-10 ">
+                                    <h1 class="card-title" th:text="${recipe.description}">Recipe Description Here!</h1>
+                                </div>
+                                <div class="col-md-1">
+                                    <a class="btn btn-light" href="#"
+                                       th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
+                                </div>
+                            </div>
+                        </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
                                 <h5>Kategorien:</h5>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-3">
                                 <!--/*@thymesVar id="recipe" type="com.jfuerste.recipewebapp.domain.Recipe"*/-->
                                 <ul th:each="category : ${recipe.categories}">
                                     <li th:text="${category.description}">cat one</li>
                                 </ul>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <img src="../../static/images/pilav.jpg"
+                                     th:src="@{/images/pilav.jpg}"
+                                     width="200" height="200">
                             </div>
                         </div>
                         <div class="row">
