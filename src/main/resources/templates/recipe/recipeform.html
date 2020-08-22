@@ -56,10 +56,12 @@
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Schwierigkeit:</label>
-                                    <select class="form-control">
-                                        <option>Einfach</option>
-                                        <option>Fortgeschritten</option>
-                                        <option>Schwer</option>
+                                    <select class="form-control" th:field="*{difficulty}">
+                                        <option th:each="difficultyValue : ${T(com.jfuerste.recipewebapp.domain.Difficulty).values()}"
+                                                th:value="${difficultyValue.name()}"
+                                                th:text="${difficultyValue.toString()}">
+                                            val
+                                        </option>
                                     </select>
                                 </div>
                             </div>
