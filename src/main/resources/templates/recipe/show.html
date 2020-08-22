@@ -98,6 +98,9 @@
                                     <li th:text="${ingredient}">1 Teaspoon of Sugar</li>
                                 </ul>
                             </div>
+                            <div class="col-md-2 float-left">
+                                <a class="btn btn-info " href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">Anpassen</a>
+                            </div>
                         </div>
                     </div>
                 </div>

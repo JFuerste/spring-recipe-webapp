@@ -38,10 +38,6 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<IngredientCommand> ingredientCommand = recipe.getIngredients().stream().filter(ingredient -> ingredient.getId().equals(ingredientId))
                 .map(ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
 
-
-
-
-
         if (ingredientCommand.isEmpty()){
             log.error("Ingredient id not found. Id: " + ingredientId );
         }
@@ -83,5 +79,24 @@ public class IngredientServiceImpl implements IngredientService {
                 .get());
 
 
+    }
+
+    @Override
+    public void deleteByRecipeIdAndIngredientId(Long recipeId, Long ingredientId) {
+        Optional<Recipe> recipeOpt = recipeRepository.findById(recipeId);
+        if (recipeOpt.isEmpty()){
+            log.error("Recipe id not found. Id: " + recipeId);
+        }
+        Recipe recipe = recipeOpt.get();
+        Optional<Ingredient> ingredientOptional = recipe.getIngredients()
+                .stream()
+                .filter(ingredient -> ingredient.getId().equals(Long.valueOf(ingredientId))).findFirst();
+
+        if (ingredientOptional.isPresent()){
+            Ingredient ingredient = ingredientOptional.get();
+            recipe.getIngredients().remove(ingredient);
+            ingredient.setRecipe(null);
+            recipeRepository.save(recipe);
+        }
     }
 }
