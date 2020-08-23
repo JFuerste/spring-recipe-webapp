@@ -5,6 +5,7 @@ import com.jfuerste.recipewebapp.converters.IngredientCommandToIngredient;
 import com.jfuerste.recipewebapp.converters.IngredientToIngredientCommand;
 import com.jfuerste.recipewebapp.domain.Ingredient;
 import com.jfuerste.recipewebapp.domain.Recipe;
+import com.jfuerste.recipewebapp.exceptions.NotFoundException;
 import com.jfuerste.recipewebapp.repositories.RecipeRepository;
 import com.jfuerste.recipewebapp.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,8 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<Recipe> recipeOpt = recipeRepository.findById(recipeId);
         if (recipeOpt.isEmpty()){
             log.error("Recipe id not found. Id: " +recipeId);
+            throw new NotFoundException("Recipe ID not found. ID: " + recipeId);
+
         }
         Recipe recipe = recipeOpt.get();
         Optional<IngredientCommand> ingredientCommand = recipe.getIngredients().stream().filter(ingredient -> ingredient.getId().equals(ingredientId))
@@ -40,6 +43,8 @@ public class IngredientServiceImpl implements IngredientService {
 
         if (ingredientCommand.isEmpty()){
             log.error("Ingredient id not found. Id: " + ingredientId );
+            throw new NotFoundException("Ingredient id not found. Id: " + ingredientId);
+
         }
 
         return ingredientCommand.get();
@@ -51,7 +56,7 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<Recipe> recipeOpt = recipeRepository.findById(command.getRecipeId());
         if (recipeOpt.isEmpty()){
             log.error("Recipe ID not found. ID: " + command.getId());
-            return new IngredientCommand();
+            throw new NotFoundException("Recipe ID not found. ID: " + command.getId());
         }
         Recipe recipe = recipeOpt.get();
 
@@ -86,6 +91,8 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<Recipe> recipeOpt = recipeRepository.findById(recipeId);
         if (recipeOpt.isEmpty()){
             log.error("Recipe id not found. Id: " + recipeId);
+            throw new NotFoundException("Recipe ID not found. ID: " + recipeId);
+
         }
         Recipe recipe = recipeOpt.get();
         Optional<Ingredient> ingredientOptional = recipe.getIngredients()
