@@ -28,7 +28,7 @@
                                 <div class="col-md-3 form-group" th:class="${#fields.hasErrors('description')}
                                 ? 'col-md-3 form-group is-invalid' : 'col-md-3 form-group'">
                                     <label>Name:</label>
-                                    <input required type="text" class="form-control" th:field="*{description}" th:errorclass="is-invalid"/>
+                                    <input  type="text" class="form-control" th:field="*{description}" th:errorclass="is-invalid"/>
                                     <span class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>
@@ -64,7 +64,7 @@
                                 <div class="col-md-3 form-group" th:class="${#fields.hasErrors('prepTime')}
                                 ? 'col-md-3 form-group invalid' : 'col-md-3 form-group'">
                                     <label>Vorbereitungszeit:</label>
-                                    <input required type="number" class="form-control" th:field="*{prepTime}" th:errorclass="is-invalid"/>
+                                    <input required  class="form-control" th:field="*{prepTime}" th:errorclass="is-invalid"/>
                                     <span class="invalid-feedback" th:if="${#fields.hasErrors('prepTime')}">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('prepTime')}" th:text="${err}"/>
@@ -74,7 +74,7 @@
                                 <div class="col-md-3 form-group" th:class="${#fields.hasErrors('cookTime')}
                                 ? 'col-md-3 form-group is-invalid' : 'col-md-3 form-group'">
                                     <label>Kochzeit:</label>
-                                    <input required type="number" class="form-control" th:field="*{cookTime}" th:errorclass="is-invalid"/>
+                                    <input required  class="form-control" th:field="*{cookTime}" th:errorclass="is-invalid"/>
                                     <span class="invalid-feedback" th:if="${#fields.hasErrors('cookTime')}">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('cookTime')}" th:text="${err}"/>
@@ -96,7 +96,7 @@
                                 <div class="col-md-3 form-group" th:class="${#fields.hasErrors('servings')}
                                 ? 'col-md-3 form-group is-invalid' : 'col-md-3 form-group'">
                                     <label>Portionen:</label>
-                                    <input type="number" class="form-control" th:field="*{servings}" th:errorclass="is-invalid"/>
+                                    <input  class="form-control" th:field="*{servings}" th:errorclass="is-invalid"/>
                                     <span class="invalid-feedback" th:if="${#fields.hasErrors('servings')}">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('servings')}" th:text="${err}"/>
