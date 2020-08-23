@@ -4,12 +4,15 @@ import com.jfuerste.recipewebapp.domain.*;
 import com.jfuerste.recipewebapp.repositories.CategoryRepository;
 import com.jfuerste.recipewebapp.repositories.RecipeRepository;
 import com.jfuerste.recipewebapp.repositories.UnitOfMeasureRepository;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,7 @@ public class RecipeLoader implements ApplicationListener<ContextRefreshedEvent> 
     }
 
 
-    public List<Recipe> getRecipes() {
+    public List<Recipe> getRecipes() throws IOException {
 
         Optional<UnitOfMeasure> gOpptional = unitOfMeasureRepository.findByDescription("g");
         Optional<UnitOfMeasure> teaspoonOptional = unitOfMeasureRepository.findByDescription("Teelöffel");
@@ -78,12 +81,23 @@ public class RecipeLoader implements ApplicationListener<ContextRefreshedEvent> 
         pilav.setSource("Blog");
         pilav.setUrl("de.semilicious.com/2016/02/08/geschichte-tuerkischerreis-1/");
 
-        //recipeRepository.save(pilav);
+        ClassPathResource imageResource = new ClassPathResource("static/images/pilav.jpg");
+        byte[] bytes = imageResource.getInputStream().readAllBytes();
+        int i = 0;
+        Byte[] wrappedBytes = new Byte[bytes.length];
+
+        for (byte b : bytes){
+            wrappedBytes[i] = b;
+            i++;
+        }
+        pilav.setImage(wrappedBytes);
+
         List<Recipe> recipes = new ArrayList<>();
         recipes.add(pilav);
         return recipes;
     }
 
+    @SneakyThrows
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {

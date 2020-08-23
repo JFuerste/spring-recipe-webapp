@@ -44,6 +44,7 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
                 .servings(source.getServings())
                 .source(source.getSource())
                 .url(source.getUrl())
+                .image(source.getImage())
                 .build();
 
         source.getIngredients().forEach(ingredient ->

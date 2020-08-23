@@ -43,6 +43,7 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
                 .url(source.getUrl())
                 .categories(new HashSet<>())
                 .ingredients(new HashSet<>())
+                .image(source.getImage())
                 .build();
 
         source.getCategories().forEach(categoryCommand ->

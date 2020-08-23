@@ -2,6 +2,7 @@ package com.jfuerste.recipewebapp.controllers;
 
 import com.jfuerste.recipewebapp.commands.IngredientCommand;
 import com.jfuerste.recipewebapp.commands.RecipeCommand;
+import com.jfuerste.recipewebapp.exceptions.NotFoundException;
 import com.jfuerste.recipewebapp.services.IngredientService;
 import com.jfuerste.recipewebapp.services.RecipeService;
 import com.jfuerste.recipewebapp.services.UnitOfMeasureService;
@@ -101,6 +102,15 @@ class IngredientControllerTest {
         .andExpect(view().name("recipe/ingredient/ingredientform"))
         .andExpect(model().attributeExists("ingredient"))
         .andExpect(model().attributeExists("uomSet"));;
+    }
+
+    @Test
+    public void getIngredientNotFound() throws Exception {
+        when(ingredientService.findCommandByRecipeIdAndId(anyLong(), anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/ingredient/2/show"))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("404error"));
     }
 
     @Test

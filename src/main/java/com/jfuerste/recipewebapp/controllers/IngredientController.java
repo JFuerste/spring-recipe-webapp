@@ -3,16 +3,16 @@ package com.jfuerste.recipewebapp.controllers;
 import com.jfuerste.recipewebapp.commands.IngredientCommand;
 import com.jfuerste.recipewebapp.commands.UnitOfMeasureCommand;
 import com.jfuerste.recipewebapp.domain.Recipe;
+import com.jfuerste.recipewebapp.exceptions.NotFoundException;
 import com.jfuerste.recipewebapp.services.IngredientService;
 import com.jfuerste.recipewebapp.services.RecipeService;
 import com.jfuerste.recipewebapp.services.UnitOfMeasureService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
@@ -103,4 +103,15 @@ public class IngredientController {
 
         return "redirect:/recipe/" + recipeId + "/ingredients/";
     };
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFound(){
+        log.error("Handling not found exception!");
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("404error");
+
+        return modelAndView;
+    }
 }

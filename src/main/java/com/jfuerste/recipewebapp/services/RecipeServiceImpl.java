@@ -4,6 +4,7 @@ import com.jfuerste.recipewebapp.commands.RecipeCommand;
 import com.jfuerste.recipewebapp.converters.RecipeCommandToRecipe;
 import com.jfuerste.recipewebapp.converters.RecipeToRecipeCommand;
 import com.jfuerste.recipewebapp.domain.Recipe;
+import com.jfuerste.recipewebapp.exceptions.NotFoundException;
 import com.jfuerste.recipewebapp.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
 
         if (optionalRecipe.isEmpty()){
-            throw new RuntimeException("Recipe does not exist!");
+            throw new NotFoundException("Recipe does not exist!");
         }
         return optionalRecipe.get();
     }
