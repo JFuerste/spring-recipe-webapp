@@ -114,6 +114,14 @@ class IngredientControllerTest {
     }
 
     @Test
+    public void handleNumException() throws Exception {
+
+        mockMvc.perform(get("/recipe/1/ingredient/asdasd/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
+    }
+
+    @Test
     public void saveIngredient() throws Exception {
         IngredientCommand ingredientCommand = new IngredientCommand();
         ingredientCommand.setId(3L);
