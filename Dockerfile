@@ -10,5 +10,6 @@ FROM openjdk:11-jre-slim
 
 WORKDIR /app
 
+EXPOSE 5000
 COPY --from=MAVEN_BUILD /build/target/recipe-webapp-0.0.1-SNAPSHOT.jar /app/
 ENTRYPOINT ["java", "-jar", "recipe-webapp-0.0.1-SNAPSHOT.jar"]
