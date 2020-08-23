@@ -81,7 +81,7 @@
                             </div>
                             <div class="col-md-3">
                                 <!--/*@thymesVar id="recipe" type="com.jfuerste.recipewebapp.domain.Recipe"*/-->
-                                <p> <a th:href="|http://${recipe.source}|">Text</a> </p>
+                                <p th:text="${recipe.source}">Text</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>URL:</h5>
