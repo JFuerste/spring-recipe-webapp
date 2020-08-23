@@ -79,7 +79,7 @@ public class RecipeLoader implements ApplicationListener<ContextRefreshedEvent> 
         pilav.setDescription("Türkischer Reis");
         pilav.setServings(4);
         pilav.setSource("Blog");
-        pilav.setUrl("de.semilicious.com/2016/02/08/geschichte-tuerkischerreis-1/");
+        pilav.setUrl("http://de.semilicious.com/2016/02/08/geschichte-tuerkischerreis-1/");
 
         ClassPathResource imageResource = new ClassPathResource("static/images/pilav.jpg");
         byte[] bytes = imageResource.getInputStream().readAllBytes();
