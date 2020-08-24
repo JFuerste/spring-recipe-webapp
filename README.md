@@ -14,4 +14,4 @@ Features:
  Build using ```mvnw package``` and view on http://localhost:5000/
 
 
-Uses H2 by default. For MySQL checkout the sql branch and activate profile "dev". 
+Uses H2 by default. For MySQL checkout the sql branch and activate profile ```dev``` in ```application.properties``` file 
